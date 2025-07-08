@@ -1,8 +1,13 @@
-# Use the official PHP image with Apache
 FROM php:8.2-apache
 
-# Copy all files to Apache’s default HTML directory
+# Install extensions (optional)
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
+# Copy your project into the web server root
 COPY . /var/www/html/
 
-# Expose port 80 (for web server)
+# Set working directory
+WORKDIR /var/www/html/
+
+# Expose the port Apache uses
 EXPOSE 80
