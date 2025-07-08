@@ -6,7 +6,7 @@ session_start();
 if(isset($_POST['submit'])){
 
    $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
+   $pass = mysqli_real_escape_string($conn, string: md5($_POST['password']));
    $user_type = $_POST['user_type']; 
 
    $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass' AND user_type = '$user_type'") or die('query failed');
@@ -94,9 +94,9 @@ if(isset($message)){
       <select name="user_type" class="box" required>
          <option value="">Select User Type</option>
          <option value="user">User</option>
-         <!-- <option value="admin">Admin</option>
+         <option value="admin">Admin</option>
          <option value="chef">Chef</option> 
-         <option value="rider">Rider</option>  -->
+         <option value="rider">Rider</option> 
       </select>
       <!-- <p align="left"><a href="forgot_password.php">Forgot Password ?</a></p>  -->
       <input type="submit" name="submit" value="Login Now" class="btn"> <p>
